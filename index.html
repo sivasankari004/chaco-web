@@ -1,0 +1,920 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Choco Bliss | Premium Chocolates</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --brown: #542d20;
+    --dark: #29150f;
+    --gold: #c99a55;
+    --cream: #fff8ef;
+    --text: #38251e;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+}
+
+h1,h2,h3 {
+    font-family: 'Playfair Display', serif;
+}
+
+header {
+    background: #fffaf4;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 15px #00000010;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 27px;
+    font-weight: bold;
+    color: var(--brown);
+}
+
+.logo span {
+    color: var(--gold);
+}
+
+nav {
+    display: flex;
+    gap: 28px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+nav a:hover {
+    color: var(--gold);
+}
+
+.cart {
+    background: var(--brown);
+    color: white;
+    padding: 11px 19px;
+    border-radius: 30px;
+    cursor: pointer;
+    border: none;
+}
+
+.menu-btn {
+    display: none;
+    font-size: 25px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.hero {
+    min-height: 590px;
+    background: linear-gradient(90deg,#29150fe8,#29150f45),
+    url('https://images.unsplash.com/photo-1511381939415-e44015466834?w=1600') center/cover;
+    display: flex;
+    align-items: center;
+    padding: 70px 9%;
+    color: white;
+}
+
+.hero-content {
+    max-width: 590px;
+}
+
+.tag {
+    color: #e4bd82;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.hero h1 {
+    font-size: clamp(45px,7vw,76px);
+    line-height: 1.1;
+    margin: 22px 0;
+}
+
+.hero p {
+    line-height: 1.9;
+    color: #f1e4d8;
+    max-width: 470px;
+}
+
+.btn {
+    display: inline-block;
+    background: var(--gold);
+    color: #28150f;
+    padding: 14px 30px;
+    border-radius: 4px;
+    margin-top: 28px;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.btn:hover {
+    background: white;
+    transform: translateY(-3px);
+}
+
+section {
+    padding: 85px 8%;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-heading span {
+    color: var(--gold);
+    letter-spacing: 3px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.section-heading h2 {
+    font-size: 42px;
+    color: var(--brown);
+    margin-top: 12px;
+}
+
+.section-heading p {
+    color: #81736b;
+    margin-top: 12px;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+    text-align: center;
+}
+
+.feature {
+    padding: 30px;
+    background: white;
+    border-radius: 8px;
+}
+
+.feature .emoji {
+    font-size: 35px;
+}
+
+.feature h3 {
+    margin: 15px 0;
+    color: var(--brown);
+}
+
+.feature p {
+    color: #82736c;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+.products {
+    background: #f5ebdf;
+}
+
+.search-box {
+    max-width: 400px;
+    margin: 0 auto 35px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ddcabb;
+    border-radius: 5px;
+    font-size: 15px;
+    outline: none;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 25px;
+}
+
+.product-card {
+    background: white;
+    border-radius: 9px;
+    overflow: hidden;
+    transition: .3s;
+}
+
+.product-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 30px #48261920;
+}
+
+.product-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 20px;
+}
+
+.product-info h3 {
+    font-size: 20px;
+    color: var(--brown);
+}
+
+.product-info p {
+    color: #887970;
+    font-size: 13px;
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+.price {
+    color: #a36c32;
+    font-weight: bold;
+    font-size: 19px;
+}
+
+.add-btn {
+    display: block;
+    width: 100%;
+    background: var(--brown);
+    color: white;
+    padding: 12px;
+    border: none;
+    margin-top: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-btn:hover {
+    background: var(--gold);
+    color: var(--dark);
+}
+
+.about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 60px;
+}
+
+.about img {
+    width: 100%;
+    height: 440px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.about-content h2 {
+    font-size: 42px;
+    color: var(--brown);
+    margin: 15px 0;
+}
+
+.about-content p {
+    color: #786960;
+    line-height: 1.9;
+    margin-top: 15px;
+}
+
+.categories {
+    background: #fffaf4;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+}
+
+.category-card {
+    position: relative;
+    height: 270px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.category-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .5s;
+}
+
+.category-card:hover img {
+    transform: scale(1.1);
+}
+
+.category-card h3 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px;
+    color: white;
+    font-size: 26px;
+    background: linear-gradient(transparent,#24110ddd);
+}
+
+.banner {
+    text-align: center;
+    color: white;
+    background: linear-gradient(#32190edb,#32190edb),
+    url('https://images.unsplash.com/photo-1548907040-4d42d4d3d3f2?w=1400') center/cover;
+}
+
+.banner h2 {
+    font-size: 45px;
+}
+
+.banner p {
+    margin-top: 15px;
+}
+
+.contact {
+    background: #f5ebdf;
+}
+
+.contact-form {
+    max-width: 650px;
+    margin: auto;
+    background: white;
+    padding: 35px;
+    border-radius: 8px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 16px;
+    border: 1px solid #dfd0c5;
+    border-radius: 5px;
+    font-family: inherit;
+    outline: none;
+}
+
+.contact-form textarea {
+    height: 130px;
+    resize: vertical;
+}
+
+.contact-form button {
+    width: 100%;
+}
+
+footer {
+    background: #29150f;
+    color: white;
+    padding: 55px 8% 20px;
+    text-align: center;
+}
+
+footer h2 {
+    color: #e2b977;
+    font-size: 30px;
+}
+
+footer p {
+    color: #d0bfb2;
+    margin: 15px 0;
+    line-height: 1.8;
+}
+
+footer a {
+    color: #e2b977;
+    text-decoration: none;
+}
+
+.copyright {
+    border-top: 1px solid #ffffff25;
+    margin-top: 30px;
+    padding-top: 20px;
+    font-size: 13px;
+}
+
+#cart-panel {
+    position: fixed;
+    right: -400px;
+    top: 0;
+    width: min(370px,100%);
+    height: 100vh;
+    background: white;
+    z-index: 2000;
+    padding: 25px;
+    box-shadow: -5px 0 25px #0002;
+    transition: .3s;
+    overflow-y: auto;
+}
+
+#cart-panel.active {
+    right: 0;
+}
+
+.cart-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.cart-head button {
+    border: none;
+    background: none;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.cart-item {
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.remove-btn {
+    color: #a33;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.cart-total {
+    font-weight: bold;
+    margin-top: 25px;
+    font-size: 20px;
+}
+
+@media(max-width:950px) {
+    .product-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .about {
+        gap: 30px;
+    }
+}
+
+@media(max-width:650px) {
+    header {
+        padding: 16px 5%;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    nav {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: #fffaf4;
+        flex-direction: column;
+        padding: 25px;
+        gap: 20px;
+    }
+
+    nav.active {
+        display: flex;
+    }
+
+    .hero {
+        min-height: 520px;
+        padding: 60px 7%;
+    }
+
+    section {
+        padding: 65px 6%;
+    }
+
+    .features,
+    .category-grid,
+    .about {
+        grid-template-columns: 1fr;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-heading h2,
+    .about-content h2,
+    .banner h2 {
+        font-size: 34px;
+    }
+
+    .about img {
+        height: 300px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Choco<span>Bliss.</span></div>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+    <nav id="navbar">
+        <a href="#home" onclick="closeMenu()">Home</a>
+        <a href="#about" onclick="closeMenu()">About</a>
+        <a href="#products" onclick="closeMenu()">Products</a>
+        <a href="#categories" onclick="closeMenu()">Categories</a>
+        <a href="#contact" onclick="closeMenu()">Contact</a>
+    </nav>
+
+    <button class="cart" onclick="openCart()">🛒 Cart (<span id="cart-count">0</span>)</button>
+</header>
+
+<!-- HOME -->
+
+<section class="hero" id="home">
+    <div class="hero-content">
+        <span class="tag">The Art of Fine Chocolate</span>
+        <h1>Life Is Better With Chocolate.</h1>
+        <p>Discover the magic of handcrafted chocolates, made with premium cocoa and a passion for perfection. Every bite is a little moment of happiness.</p>
+        <a href="#products" class="btn">Explore Chocolates →</a>
+    </div>
+</section>
+
+<!-- FEATURES -->
+
+<section>
+    <div class="section-heading">
+        <span>Why Choose Us</span>
+        <h2>A Taste of Pure Happiness</h2>
+        <p>Every chocolate tells a beautiful story.</p>
+    </div>
+
+    <div class="features">
+        <div class="feature">
+            <div class="emoji">🍫</div>
+            <h3>Premium Cocoa</h3>
+            <p>Carefully selected cocoa ingredients for a rich chocolate experience.</p>
+        </div>
+
+        <div class="feature">
+            <div class="emoji">🎁</div>
+            <h3>Beautiful Packaging</h3>
+            <p>Elegant gift boxes for celebrations and special occasions.</p>
+        </div>
+
+        <div class="feature">
+            <div class="emoji">❤️</div>
+            <h3>Made With Love</h3>
+            <p>Delicious chocolate creations crafted with attention to detail.</p>
+        </div>
+    </div>
+</section>
+
+<!-- PRODUCTS -->
+
+<section class="products" id="products">
+    <div class="section-heading">
+        <span>Our Collection</span>
+        <h2>Explore Our Chocolates</h2>
+        <p>Find your favourite chocolate and enjoy every bite.</p>
+    </div>
+
+    <div class="search-box">
+        <input type="text" id="search" placeholder="Search your favourite chocolate..." oninput="searchProducts()">
+    </div>
+
+    <div class="product-grid" id="product-grid">
+
+        <div class="product-card" data-name="dark chocolate">
+            <img src="https://images.unsplash.com/photo-1511381939415-e44015466834?w=600" alt="Dark chocolate">
+            <div class="product-info">
+                <h3>Dark Chocolate</h3>
+                <p>Rich and smooth premium dark chocolate.</p>
+                <div class="price">₹299</div>
+                <button class="add-btn" onclick="addToCart('Dark Chocolate',299)">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-name="milk chocolate">
+            <img src="https://images.unsplash.com/photo-1548907040-4d42d4d3d3f2?w=600" alt="Milk chocolate">
+            <div class="product-info">
+                <h3>Milk Chocolate</h3>
+                <p>Delightfully creamy and sweet chocolate.</p>
+                <div class="price">₹249</div>
+                <button class="add-btn" onclick="addToCart('Milk Chocolate',249)">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-name="chocolate truffles">
+            <img src="https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=600" alt="Chocolate truffles">
+            <div class="product-info">
+                <h3>Chocolate Truffles</h3>
+                <p>Delicate chocolate treats with a creamy centre.</p>
+                <div class="price">₹399</div>
+                <button class="add-btn" onclick="addToCart('Chocolate Truffles',399)">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-name="hazelnut chocolate">
+            <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600" alt="Hazelnut chocolate">
+            <div class="product-info">
+                <h3>Hazelnut Chocolate</h3>
+                <p>Crunchy hazelnuts with delicious chocolate.</p>
+                <div class="price">₹349</div>
+                <button class="add-btn" onclick="addToCart('Hazelnut Chocolate',349)">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-name="white chocolate">
+            <img src="https://images.unsplash.com/photo-1575377427642-087cf684f29d?w=600" alt="White chocolate">
+            <div class="product-info">
+                <h3>White Chocolate</h3>
+                <p>Sweet, creamy and wonderfully smooth.</p>
+                <div class="price">₹279</div>
+                <button class="add-btn" onclick="addToCart('White Chocolate',279)">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-name="chocolate brownie">
+            <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600" alt="Chocolate brownie">
+            <div class="product-info">
+                <h3>Chocolate Brownie</h3>
+                <p>Soft, fudgy and delicious chocolate brownie.</p>
+                <div class="price">₹199</div>
+                <button class="add-btn" onclick="addToCart('Chocolate Brownie',199)">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-name="chocolate gift box">
+            <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=600" alt="Chocolate gift box">
+            <div class="product-info">
+                <h3>Chocolate Gift Box</h3>
+                <p>A premium chocolate gift for special moments.</p>
+                <div class="price">₹599</div>
+                <button class="add-btn" onclick="addToCart('Chocolate Gift Box',599)">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-name="caramel chocolate">
+            <img src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=600" alt="Caramel chocolate">
+            <div class="product-info">
+                <h3>Caramel Chocolate</h3>
+                <p>Sweet caramel blended with rich chocolate.</p>
+                <div class="price">₹329</div>
+                <button class="add-btn" onclick="addToCart('Caramel Chocolate',329)">Add to Cart</button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ABOUT -->
+
+<section class="about" id="about">
+    <div>
+        <img src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=900" alt="Chocolate making">
+    </div>
+
+    <div class="about-content">
+        <span class="tag">Our Story</span>
+        <h2>Passion For Chocolate, Made With Love.</h2>
+        <p>Welcome to Choco Bliss, where chocolate is more than a sweet treat. It is a celebration of happiness, creativity and wonderful moments.</p>
+        <p>Our collection brings together delightful flavours, premium ingredients and beautiful presentations to make every occasion special.</p>
+        <a href="#products" class="btn">Discover More</a>
+    </div>
+</section>
+
+<!-- CATEGORIES -->
+
+<section class="categories" id="categories">
+    <div class="section-heading">
+        <span>Discover More</span>
+        <h2>Our Chocolate Categories</h2>
+        <p>Something special for every chocolate lover.</p>
+    </div>
+
+    <div class="category-grid">
+        <div class="category-card">
+            <img src="https://images.unsplash.com/photo-1511381939415-e44015466834?w=700" alt="Dark chocolate">
+            <h3>Dark Chocolates</h3>
+        </div>
+
+        <div class="category-card">
+            <img src="https://images.unsplash.com/photo-1548907040-4d42d4d3d3f2?w=700" alt="Milk chocolate">
+            <h3>Milk Chocolates</h3>
+        </div>
+
+        <div class="category-card">
+            <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=700" alt="Chocolate gifts">
+            <h3>Gift Collections</h3>
+        </div>
+    </div>
+</section>
+
+<!-- OFFER -->
+
+<section class="banner">
+    <span class="tag">A Little Sweetness</span>
+    <h2>Make Every Moment Sweeter!</h2>
+    <p>Discover beautiful chocolates for your favourite occasions.</p>
+    <a href="#products" class="btn">Shop Now</a>
+</section>
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+    <div class="section-heading">
+        <span>Get In Touch</span>
+        <h2>We'd Love To Hear From You</h2>
+        <p>Have a question? Send us a message.</p>
+    </div>
+
+    <form class="contact-form" onsubmit="sendMessage(event)">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" placeholder="Your Email" required>
+        <input type="text" id="subject" placeholder="Subject" required>
+        <textarea id="message" placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+    </form>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+    <h2>Choco Bliss.</h2>
+    <p>Making the world sweeter, one chocolate at a time.</p>
+    <p>
+        <a href="#home">Home</a> |
+        <a href="#about">About</a> |
+        <a href="#products">Products</a> |
+        <a href="#contact">Contact</a>
+    </p>
+
+    <div class="copyright">
+        © 2026 Choco Bliss. All Rights Reserved.
+    </div>
+</footer>
+
+<!-- CART PANEL -->
+
+<div id="cart-panel">
+    <div class="cart-head">
+        <h2>Your Shopping Cart</h2>
+        <button onclick="closeCart()">×</button>
+    </div>
+
+    <div id="cart-items">
+        <p>Your cart is empty.</p>
+    </div>
+
+    <div class="cart-total">
+        Total: ₹<span id="cart-total">0</span>
+    </div>
+
+    <button class="btn" style="width:100%" onclick="checkout()">Checkout</button>
+</div>
+
+<script>
+// MOBILE MENU
+
+function toggleMenu() {
+    document.getElementById("navbar").classList.toggle("active");
+}
+
+function closeMenu() {
+    document.getElementById("navbar").classList.remove("active");
+}
+
+// SHOPPING CART
+
+let cart = [];
+
+function addToCart(name, price) {
+    let existing = cart.find(item => item.name === name);
+
+    if(existing) {
+        existing.quantity++;
+    } else {
+        cart.push({
+            name: name,
+            price: price,
+            quantity: 1
+        });
+    }
+
+    updateCart();
+    alert(name + " added to your cart!");
+}
+
+function updateCart() {
+    let count = 0;
+    let total = 0;
+
+    cart.forEach(item => {
+        count += item.quantity;
+        total += item.price * item.quantity;
+    });
+
+    document.getElementById("cart-count").textContent = count;
+    document.getElementById("cart-total").textContent = total;
+
+    let cartItems = document.getElementById("cart-items");
+
+    if(cart.length === 0) {
+        cartItems.innerHTML = "<p>Your cart is empty.</p>";
+        return;
+    }
+
+    cartItems.innerHTML = cart.map((item,index) => `
+        <div class="cart-item">
+            <div>
+                <strong>${item.name}</strong>
+                <p>₹${item.price} × ${item.quantity}</p>
+            </div>
+            <button class="remove-btn" onclick="removeItem(${index})">
+                Remove
+            </button>
+        </div>
+    `).join("");
+}
+
+function removeItem(index) {
+    cart.splice(index,1);
+    updateCart();
+}
+
+function openCart() {
+    document.getElementById("cart-panel").classList.add("active");
+}
+
+function closeCart() {
+    document.getElementById("cart-panel").classList.remove("active");
+}
+
+function checkout() {
+    if(cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+    }
+
+    alert("Thank you for shopping with Choco Bliss! This is a demo checkout.");
+}
+
+// PRODUCT SEARCH
+
+function searchProducts() {
+    let search = document.getElementById("search").value.toLowerCase();
+
+    document.querySelectorAll(".product-card").forEach(card => {
+        let name = card.dataset.name;
+
+        card.style.display = name.includes(search) ? "block" : "none";
+    });
+}
+
+// CONTACT FORM
+
+function sendMessage(event) {
+    event.preventDefault();
+
+    let name = document.getElementById("name").value;
+
+    alert("Thank you " + name + "! Your message has been received in this demo.");
+
+    event.target.reset();
+}
+</script>
+
+</body>
+</html>

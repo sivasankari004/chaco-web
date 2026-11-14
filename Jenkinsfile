@@ -7,7 +7,7 @@ pipeline {
         stage('Clone GitHub Repository') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/vijayalakshmi778/jenkins-batch22.git'
+                    url: 'https://github.com/sivasankari004/chaco-web.git'
             }
         }
 
@@ -17,12 +17,12 @@ pipeline {
             }
         }
 
-        stage('Stop Old Container') {
-            steps {
-                sh 'docker stop jenkins-web-container || true'
-                sh 'docker rm jenkins-web-container || true'
-            }
-        }
+        // stage('Stop Old Container') {
+        //     steps {
+        //         sh 'docker stop jenkins-web-container || true'
+        //         sh 'docker rm jenkins-web-container || true'
+        //     }
+        // }
 
         stage('Run New Container') {
             steps {
